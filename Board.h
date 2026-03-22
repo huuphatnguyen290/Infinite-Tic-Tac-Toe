@@ -16,9 +16,9 @@ private:
 
 public:
     Board() {
-        minRow = -2;
+        minRow = 0;
         maxRow = 2;
-        minCol = -2;
+        minCol = 0;
         maxCol = 2;
         resizeGrid();
     }
