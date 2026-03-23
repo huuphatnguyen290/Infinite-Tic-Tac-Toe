@@ -38,10 +38,18 @@ public:
         : Player(playerName, playerSymbol) {}
 
     int getMove() override {
-        int position;
-        std::cout << name << " (" << symbol << "), enter position (1-9): ";
-        std::cin >> position;
-        return position;
+        std::string input;
+
+        while (true) {
+            std::cout << name << " (" << symbol << "), enter position (1-9): ";
+            std::cin >> input;
+
+            if (input.length() == 1 && input[0] >= '1' && input[0] <= '9') {
+                return input[0] - '0';
+            }
+
+            std::cout << "Error: input must be an integer from 1 to 9.\n";
+        }
     }
 };
 
