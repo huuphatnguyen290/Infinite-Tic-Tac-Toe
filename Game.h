@@ -148,6 +148,7 @@ public:
     ~Game() {}
 
     void display() {
+        // Display both the tic-tac-toe board and the position guide board
         std::string line = "--------------";
         std::cout << "\n";
         std::cout << board[0][0] << " | " << board[0][1] << " | " << board[0][2]
@@ -173,6 +174,7 @@ public:
     }
 
     void showGuide(){
+        // Position guide board guide which input correspond to which position 
         std::cout << "Board positions:\n";
         std::cout << "1 | 2 | 3\n";
         std::cout << "----------\n";
@@ -187,11 +189,12 @@ public:
 
     void play() {
         Player* current = &player1;
-
+        // Show the numbered square 
         showGuide();
 
         while (true) {
             display();
+            // Check if move is valid
             processMove(*current);
             display();
 
@@ -200,6 +203,7 @@ public:
                 break;
             }
 
+            // Alternate between players
             if (current == &player1) {
                 current = &player2;
             } else {
