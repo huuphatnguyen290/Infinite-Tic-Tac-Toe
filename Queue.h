@@ -6,18 +6,29 @@
 /*  A Queue implemented using a templated circularly linked list:
     - Last-In First-Out (LIFO)
     - Functions: enqueue, dequeue, top, isEmpty, length, printQueue*/
-template <typename T> class Queue {
-public:
-    // This queue is implemented using a circularly linked list
-    Node<T>* rear;
 
+    
+template <typename T> class Queue {
+// This queue is implemented using a circularly linked list
+protected:
+    Node<T>* rear;
+    int count;
+public:
     // Default Constructor
-    Queue<T>() {
+    Queue() {
         rear = nullptr;
+        count =0;
     }
 
+    virtual ~Queue() {
+        while (!isEmpty()) {
+            dequeue();
+        }
+    }
+
+
     // Add at the rear
-    void enqueue(T data) {
+    void enqueue(const T& data) {
         // Create new node
         Node<T>* new_node = new Node<T>(data);
 
@@ -26,12 +37,13 @@ public:
             rear = new_node;
             rear->next = rear;
         // Case 2: queue is not empty
-        } else if (rear->next == nullptr) {
-            rear->next = new_node;
-            new_node->next = rear;
-            rear = new_node;
+        } 
+        else {
+            new_node->next = rear->next; // new node points to front
+            rear->next = new_node;       // old rear points to new node
+            rear = new_node;             // update rear
         }
-
+        count++;
     }
 
     // Remove at the front
@@ -66,24 +78,26 @@ public:
     }
 
     int length() {
-        if (rear == nullptr) return 0;
-
-        int count = 1;
-        Node<T>* itr = rear->next;
-        while(itr != rear) {
-            itr = itr->next;
-            count++;
-        }
         return count;
     }
 
     void printQueue() {
-        Node<T>* itr = rear->next;
-        while (itr != rear){
-           std::cout << itr->data;
-            if (itr->next != rear) std::cout << " <- ";
-            itr = itr->next;
+
+        if (rear == nullptr) {
+            std::cout << "Queue is empty.\n";
+            return;
         }
+
+        Node<T>* itr = rear->next; //front
+        
+        do {
+            std::cout << itr->data;
+            itr = itr->next;
+            if (itr != rear->next) {
+                std::cout << " <- ";
+            }
+        } while (itr != rear->next);
+
         std::cout << std::endl;
     }
 };

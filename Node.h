@@ -14,7 +14,7 @@ template <typename T> class Node
         // Parameterized Constructor
         Node(const T& data) : data(data), next(nullptr) {};
 
-        virtual ~Node() {};
+        ~Node() {};
 };
 
 #endif // NODE_H
