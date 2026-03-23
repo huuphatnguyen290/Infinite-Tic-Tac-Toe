@@ -7,7 +7,13 @@ public:
     T data;
     Node<T>* next;
 
-    Node(const T& value) : data(value), next(nullptr) {}
-};
+        // Default Constructor
+        Node() : data(T()), next(nullptr) {}
+
+        // Parameterized Constructor
+        Node(const T& data) : data(data), next(nullptr) {};
+
+        ~Node() {};
+}; 
 
 #endif

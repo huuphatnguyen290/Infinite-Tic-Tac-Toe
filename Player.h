@@ -1,28 +1,20 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include <iostream>
 #include <string>
-#include "CircularQueue.h"
-#include "Position.h"
+#include "queue.h"
 
 class Player {
-protected:
-    // Player name
+protected: 
     std::string name;
-
-    // Player symbol: usually X or O
     char symbol;
-
-    // Queue of this player's moves
-    // Used to keep track of the oldest move
-    CircularQueue<Position> moves;
+    Queue<int> moves;   // store positions 1 to 9
 
 public:
-    // Constructor to set name and symbol
     Player(const std::string& playerName, char playerSymbol)
         : name(playerName), symbol(playerSymbol) {}
 
-    // Virtual destructor for base class
     virtual ~Player() {}
 
     std::string getName() const {
@@ -33,12 +25,24 @@ public:
         return symbol;
     }
 
-    CircularQueue<Position>& getMoves() {
+    Queue<int>& getMoves() {
         return moves;
     }
 
-    // Each child class must define how to get a move
-    virtual Position getMove() = 0;
+    virtual int getMove() = 0;
+};
+
+class HumanPlayer : public Player {
+public:
+    HumanPlayer(const std::string& playerName, char playerSymbol)
+        : Player(playerName, playerSymbol) {}
+
+    int getMove() override {
+        int position;
+        std::cout << name << " (" << symbol << "), enter position (1-9): ";
+        std::cin >> position;
+        return position;
+    }
 };
 
 #endif
