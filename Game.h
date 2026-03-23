@@ -15,12 +15,15 @@ private:
 
     HumanPlayer player1;
     HumanPlayer player2;
-
+    
+    // Helper functions check for either a horizontal, vertically, or diagonally win for the check_win() function
     bool check_row() const {
         for (int i = 0; i < 3; i++) {
             bool res = true;
+            // Compare same with other char from the same row
             char same = board[i][0];
 
+            // '_' is considered empty space
             if (same == '_') continue;
 
             for (int j = 1; j < 3; j++) {
@@ -99,12 +102,14 @@ private:
         return true;
     }
 
+    // Set char at position to symbol
     void placeAt(int position, char symbol) {
         int row = (position - 1) / 3;
         int col = (position - 1) % 3;
         board[row][col] = symbol;
     }
 
+    // Set char at position to '_'
     void clearAt(int position) {
         int row = (position - 1) / 3;
         int col = (position - 1) % 3;
