@@ -79,6 +79,15 @@ private:
     }
 
     bool isValid(int position) const {
+        // Check if input is an integer
+        if (!(std::cin >> position)) {
+            std::cout << "Invalid input, please enter an integer between 1 and 9: ";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        // Check if input is between 1 and 9
         if (position < 1 || position > 9) {
             std::cout << "Invalid position, enter a number between 1 and 9 inclusive" << std::endl;
             return false;
@@ -88,6 +97,7 @@ private:
         int column = (position - 1) % 3;
         char symbol = board[row][column];
 
+        // Check if position is already occupied
         if (board[row][column] != '_') {
             std::cout << "Position occupied with " << board[row][column] << ". Enter a new position.\n";
             return false;
