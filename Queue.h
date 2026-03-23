@@ -10,7 +10,7 @@
     
 template <typename T> class Queue {
 // This queue is implemented using a circularly linked list
-protected:
+protected: 
     Node<T>* rear;
     int count;
 public:

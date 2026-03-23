@@ -6,7 +6,7 @@
 #include "queue.h"
 
 class Player {
-protected:
+protected: 
     std::string name;
     char symbol;
     Queue<int> moves;   // store positions 1 to 9

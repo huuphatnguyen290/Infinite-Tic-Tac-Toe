@@ -15,6 +15,6 @@ template <typename T> class Node
         Node(const T& data) : data(data), next(nullptr) {};
 
         ~Node() {};
-};
+}; 
 
 #endif // NODE_H
