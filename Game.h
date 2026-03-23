@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <iostream>
+#include <string>
 #include "Player.h"
 
 class Game {
@@ -78,6 +79,15 @@ private:
     }
 
     bool isValid(int position) const {
+        // Check if input is an integer
+        if (!(std::cin >> position)) {
+            std::cout << "Invalid input, please enter an integer between 1 and 9: ";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            continue;
+        }
+
+        // Check if input is between 1 and 9
         if (position < 1 || position > 9) {
             std::cout << "Invalid position, enter a number between 1 and 9 inclusive" << std::endl;
             return false;
@@ -87,6 +97,7 @@ private:
         int column = (position - 1) % 3;
         char symbol = board[row][column];
 
+        // Check if position is already occupied
         if (board[row][column] != '_') {
             std::cout << "Position occupied with " << board[row][column] << ". Enter a new position.\n";
             return false;
@@ -140,28 +151,28 @@ public:
     ~Game() {}
 
     void display() {
+        std::string line = "--------------";
         std::cout << "\n";
         std::cout << board[0][0] << " | " << board[0][1] << " | " << board[0][2]
-                << "        "
+                << "\t"
                 << "1 | 2 | 3" << std::endl;
 
-        std::cout << "--------------"
-                << "   "
-                << "-------------" << std::endl;
+        std::cout << line
+                << "\t"
+                << line << std::endl;
 
         std::cout << board[1][0] << " | " << board[1][1] << " | " << board[1][2]
-                << "        "
+                << "\t"
                 << "4 | 5 | 6" << std::endl;
 
-        std::cout << "--------------"
-                << "   "
-                << "-------------" << std::endl;
+        std::cout << line                
+                << "\t"
+                << line << std::endl;
 
         std::cout << board[2][0] << " | " << board[2][1] << " | " << board[2][2]
                 << "        "
                 << "7 | 8 | 9" << std::endl;
 
-        std::cout << "--------------" << std::endl;
     }
 
     void showGuide(){
