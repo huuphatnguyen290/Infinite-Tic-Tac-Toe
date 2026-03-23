@@ -79,13 +79,6 @@ private:
     }
 
     bool isValid(int position) const {
-        // Check if input is an integer
-        if (!(std::cin >> position)) {
-            std::cout << "Invalid input, please enter an integer between 1 and 9: ";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            continue;
-        }
 
         // Check if input is between 1 and 9
         if (position < 1 || position > 9) {
