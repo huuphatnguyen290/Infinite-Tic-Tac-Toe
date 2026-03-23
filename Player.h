@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "queue.h"
+#include "Queue.h"
 
 class Player {
 protected: 
