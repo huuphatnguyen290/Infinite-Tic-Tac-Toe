@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <iostream>
+#include <string>
 #include "Player.h"
 
 class Game {
@@ -140,28 +141,28 @@ public:
     ~Game() {}
 
     void display() {
+        std::string line = "--------------";
         std::cout << "\n";
         std::cout << board[0][0] << " | " << board[0][1] << " | " << board[0][2]
-                << "        "
+                << "\t"
                 << "1 | 2 | 3" << std::endl;
 
-        std::cout << "--------------"
-                << "   "
-                << "-------------" << std::endl;
+        std::cout << line
+                << "\t"
+                << line << std::endl;
 
         std::cout << board[1][0] << " | " << board[1][1] << " | " << board[1][2]
-                << "        "
+                << "\t"
                 << "4 | 5 | 6" << std::endl;
 
-        std::cout << "--------------"
-                << "   "
-                << "-------------" << std::endl;
+        std::cout << line                
+                << "\t"
+                << line << std::endl;
 
         std::cout << board[2][0] << " | " << board[2][1] << " | " << board[2][2]
                 << "        "
                 << "7 | 8 | 9" << std::endl;
 
-        std::cout << "--------------" << std::endl;
     }
 
     void showGuide(){
